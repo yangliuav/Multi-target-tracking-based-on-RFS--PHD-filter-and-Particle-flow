@@ -116,18 +116,18 @@
 % redistribute it and/or modify it under the terms of this licence, for 
 % personal and non-commercial use and research purpose. 
 
-alg_path='D:/only_code/important/code/IPF'
+alg_path = fileparts(mfilename('fullpath'));
 
-addpath([alg_path,'\','ekfukf']);
-addpath([alg_path,'\','particle_filter']);
-addpath([alg_path,'\','particle_flow']);
-addpath([alg_path,'\','SmHMC']);
-addpath([alg_path,'\','plotting']);
-addpath([alg_path,'\','tools']);
-addpath([alg_path,'\','SMCPHD']);
-addpath([alg_path,'\','Acoustic_Example']);
+addpath(fullfile(alg_path,'ekfukf'));
+addpath(fullfile(alg_path,'particle_filter'));
+addpath(fullfile(alg_path,'particle_flow'));
+addpath(fullfile(alg_path,'SmHMC'));
+addpath(fullfile(alg_path,'plotting'));
+addpath(fullfile(alg_path,'tools'));
+addpath(fullfile(alg_path,'SMCPHD'));
+addpath(fullfile(alg_path,'Acoustic_Example'));
  
-Init_PATH = [alg_path,'\','Core_files\Init'];           % Point the folder where the data are located.
+Init_PATH = fullfile(alg_path,'Core_files','Init');           % Point the folder where the data are located.
 addpath( Init_PATH ); 
 %DATA_PATH = '../Data';           % Point the folder where the data are located. % ../../../Data
 %addpath( DATA_PATH ); 
@@ -180,7 +180,7 @@ switch inp.example_name
         Ac = Visual_example_initialization(inp);
         setup.Ac = Ac;
     case 'Locata'
-        addpath([alg_path,'\','Locata_Example']);
+        addpath(fullfile(alg_path,'Locata_Example'));
         Ac = Locata_example_initialization(inp);
         setup.Ac = Ac;
         

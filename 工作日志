@@ -4,7 +4,7 @@
 Error 1：			unrecognized function or variable 'alg_path' in initialize.m
 State：				进一步修正中
 Fixing history：		增加地址定义，为alg_path赋值当前IPF的绝对路径（已完成）；
-				进一步修改成相对路径或删除（进行中）
+				进一步修改成相对路径或删除（已完成）
 
 #############################################################################################################################################
 Error 2：			unrecognized function or variable 'x' in generateMeasurements.m
@@ -12,4 +12,5 @@ State：				进一步修正中
 Fixing history：		增加地址定义，为alg_path赋值当前IPF的绝对路径（已完成）； 仍然无法查到x （出现新错误 generateMesuarements.m line 16 缺少输入）
 				generateMesuarements.m line 33 无法找到正确的example_name (是不是不能使用editor里面的run 还是创建的Core_files/Init路径下需要存储指定格式的数据？)
 				进一步修改成相对路径或删除（进行中）
+
 		
