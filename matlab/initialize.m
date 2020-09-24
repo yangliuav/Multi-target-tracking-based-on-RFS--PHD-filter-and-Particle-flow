@@ -164,7 +164,7 @@ inp.ztype = 'SRP'; %'DOA' or 'SRP'
 inp.T = 1;
 inp.K = 50;
 inp.nspeaker = 4;
-inp.example_name = 'Locata';%'Visual';%'Acoustic';
+inp.example_name = 'Acoustic';%'Visual';%'Acoustic';
 inp.random_seeds = randsample(1e5*inp.nspeaker,inp.nspeaker);
 inp.dimState_all = 4;
 switch inp.example_name
