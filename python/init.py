@@ -116,6 +116,8 @@
 # redistribute it and/or modify it under the terms of this licence, for 
 # personal and non-commercial use and research purpose. 
 
+import os
+
 class Environment:
     def __init__(self):
         self.ospa_c = 40       # the parameter c of the OSPA
@@ -126,6 +128,7 @@ class Environment:
         self.sigma_scale = 0.1 # variance of the noise of the scale parameter
 
         self.Wk_resample     =   0;
+#以下部分是否要放入构造函数里？
 self.kflag           =   'EKF1';%'EKF1','regularized_identity',...'none'; % the method used to estimate the prior covariance.
 self.resample        =   true;
 self.redraw		  =   true;
@@ -145,4 +148,14 @@ self.lambda_range = linspace(0,1,29);
 def init(algorithms = "")
     if not algorithms:
         return 
-    if 
+    if
+
+# Path problem
+Init_PATH = fullfile(alg_path, 'Core_files', 'Init');
+path_lib=['ekfukf','particle_filter','particle_flow',
+          'SmHMC','plotting','tools'
+          'SMCPHD','Acoustic_Example','results',
+          'Acoustic_Example']
+for path in path_lib:
+    if not os.path.exsits(path):
+        os.mkdir(path)
