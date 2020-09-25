@@ -122,7 +122,7 @@ class Environment:
     def __init__(self):
         self.ospa_c = 40       # the parameter c of the OSPA
         self.ospa_p = 1        # the parameter p of the OSPA
-        self.initvel = 4       # the initial value of the vel 
+        self.initvel = 4       # the initial value of the vel
 
         self.sigma = 50        # noise of variance
         self.sigma_scale = 0.1 # variance of the noise of the scale parameter
@@ -142,20 +142,19 @@ self.nParticleCluster = 100;% Number of particle clusters used to calculate the 
 self.Neff_thresh_ratio = 0.5;
 self.nParticle = 50;
 self.clutter = 2;
-self.detect  = 0.99; 
+self.detect  = 0.99;
 self.lambda_range = linspace(0,1,29);
 
 def init(algorithms = "")
     if not algorithms:
-        return 
+        return
     if
 
 # Path problem
-Init_PATH = fullfile(alg_path, 'Core_files', 'Init');
 path_lib=['ekfukf','particle_filter','particle_flow',
           'SmHMC','plotting','tools'
           'SMCPHD','Acoustic_Example','results',
           'Acoustic_Example']
 for path in path_lib:
-    if not os.path.exsits(path):
+    if not os.path.exists(path):
         os.mkdir(path)
