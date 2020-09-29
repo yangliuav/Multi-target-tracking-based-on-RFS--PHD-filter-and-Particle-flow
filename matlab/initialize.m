@@ -8,7 +8,7 @@
 %   algs: the algorithms are used.
 %   cam : the camera index of AV 16.3
 %   sequence : the sequence name of AV 16.3
-%   seed : the ramdon seed
+%   seed : the ramdon seed   
 %   resultsPath : the path of saving result.
 %   colormodel : the color model 
 %   bins       : the bin number of the histogram 
@@ -163,6 +163,7 @@ setup.lambda_range = linspace(0,1,29);
 inp.ztype = 'SRP'; %'DOA' or 'SRP'
 inp.T = 1;
 inp.K = 50;
+inp.H = [1,0,0,0;0,1,0,0]';
 inp.nspeaker = 4;
 inp.example_name = 'Visual' %'Acoustic';%'Visual';%'Acoustic';
 inp.random_seeds = randsample(1e5*inp.nspeaker,inp.nspeaker);
