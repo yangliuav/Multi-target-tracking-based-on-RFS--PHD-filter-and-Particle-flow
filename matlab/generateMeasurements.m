@@ -112,7 +112,9 @@ if setup.out.print_frame
     ylabel('Y (m)','FontSize',fontsize);
     dt = datestr(now,'yyyymmddHHMM')
     dt = [dt,'.png'];
-    print(gcf,'-painters','-dpng',['./result/Groundtrue',dt]);
+    
+    file_path = fileparts(mfilename('fullpath'));
+    print(gcf,'-painters','-dpng',fullfile(file_path,'result','Groundtrue',dt));
 %     export_fig('setup.pdf');
 end
 

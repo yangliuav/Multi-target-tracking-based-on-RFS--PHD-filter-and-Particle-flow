@@ -16,7 +16,7 @@ lambda_prev = 0;
 % jacobian_det_prod is calculated for PFPF (LEDH) weight update.
 log_jacobian_det_sum = zeros(1,setup.nParticle);
 H = [1,0,0,0;0,1,0,0]';
-h = setup.inp.H;
+% h = inp.H;
 lm = zeros(1,size(vgset,2));
 for i = 1:size(vgset,2)
     [~,lm(:,i)] = max(vgset(i).llh);
