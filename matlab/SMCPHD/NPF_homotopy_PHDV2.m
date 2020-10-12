@@ -8,9 +8,12 @@ vgsetold = vgset;
 
 d2 = zeros(N,znum);
 H = setup.inp.H;
-h1 = setup.inp.h1;
-h2 = setup.inp.h2;
-r=  setup.inp.clutter;
+h1=H;
+h2=H;
+%h1 = setup.inp.h1;
+%h2 = setup.inp.h2;
+%r= setup.inp.clutter
+r=  setup.clutter;
 for ii = 1:N
 %    h = vgset(ii).llh; 
     x = vgset(ii).xp(1:2,:);

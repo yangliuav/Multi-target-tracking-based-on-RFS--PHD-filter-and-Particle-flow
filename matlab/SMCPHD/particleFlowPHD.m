@@ -100,6 +100,8 @@ for lambda = setup.lambda_range
                 load 'sensorsXY';
             fontsize = 24;
             if isfield(setup.inp,'x_all')
+                xx = cell2mat(setup.inp.x_all);
+                xxt  =xx(:,tt);
                 for i = 1: setup.Ac.nspeaker
                     x_pos_i = xxt((i-1)*4+1,:);
                     y_pos_i = xxt((i-1)*4+2,:);

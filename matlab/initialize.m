@@ -269,3 +269,4 @@ setup.inp = inp;
 setup.out = out;
 setup.PHD = PHD;
 setup.PF  = PF; 
+setup.inp
