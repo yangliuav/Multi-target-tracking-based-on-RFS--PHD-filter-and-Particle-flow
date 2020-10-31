@@ -12,7 +12,7 @@ function [output,position] = SMCPHD(setup,z)
 
 tic
 
-[vg,vgset,output] = initializationFilterPHD(setup);
+[vg,vgset,output] = initializationFilterPHD(setup); % first appear
 position = cell(size(z,2),1);
 output.vgsetx = [];
 output.vgsetw = [];
