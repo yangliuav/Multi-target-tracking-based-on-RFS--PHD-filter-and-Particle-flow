@@ -72,10 +72,14 @@ function [vgset,setup] = posteriorPHD(vgset,setup,z_current,H,clutter)
             vgset(j).wlik(i) = wlik;
         end
         
-        vgset(j).w =(1-vgset(j).PD)*vgset(j).w +  vgset(j).w*xz*vgset(j).PD;
+         vgset(j).w =(1-vgset(j).PD)*vgset(j).w +  vgset(j).w*xz*vgset(j).PD;
         if isnan(vgset(j).w)
             vgset(j) = vgset(1);
         end
+        %%
+        % 
+        % $$e^{\pi i} + 1 = 0$$
+        % 
     end
     
      

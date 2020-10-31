@@ -8,8 +8,6 @@ vgsetold = vgset;
 
 d2 = zeros(N,znum);
 H = setup.inp.H;
-h1=H;
-h2=H;
 %h1 = setup.inp.h1;
 %h2 = setup.inp.h2;
 %r= setup.inp.clutter
@@ -41,18 +39,24 @@ for ii = 1:N
     B = zeros(2,1);
     b = zeros(2,1);
     x = vgset(ii).xp(1:2,:);
-%     for j = 1:znum   
+%    h1 = 2^1.5/pi*besselk(1,d2(ii,j))*(x - z(:,j));
+%    h2 = 2^0.5/pi*(besselk(-2,d2(ii,j))+2*besselk(0,d2(ii,j))+besselk(2,d2(ii,j)))*(x - z(:,j))*(x - z(:,j))'-2^1.5/pi*besselk(1,d2(ii,j))*[1,0;0,1];
+
+    for j = 1:znum   
+        h1 = 2^1.5/pi*besselk(1,d2(ii,j))*(x - z(:,j));
+        h2 = 2^0.5/pi*(besselk(-2,d2(ii,j))+2*besselk(0,d2(ii,j))+besselk(2,d2(ii,j)))*(x - z(:,j))*(x - z(:,j))'-2^1.5/pi*besselk(1,d2(ii,j))*[1,0;0,1];
+        A = A+setup.detect*lambda*h2/(0.008+Cz(:,j));
+        B = B+setup.detect*h1/(0.008+Cz(:,j)); 
+    end  
+%     for j = 1:znum
+%         % original code
 %         h1 = 2^1.5/pi*besselk(1,d2(ii,j))*(x - z(:,j));
 %         h2 = 2^0.5/pi*(besselk(-2,d2(ii,j))+2*besselk(0,d2(ii,j))+besselk(2,d2(ii,j)))*(x - z(:,j))*(x - z(:,j))'-2^1.5/pi*besselk(1,d2(ii,j))*[1,0;0,1];
-%         A = A+setup.detect*lambda*h2/(0.008+Cz(:,j));
-%         B = B+setup.detect*h1/(0.008+Cz(:,j));
-%     end  
-    for j = 1:znum
-        a = [interp2(h2(:,:,1,1),vgset(ii).xp(2),vgset(ii).xp(1)),interp2(h2(:,:,1,2),vgset(ii).xp(2),vgset(ii).xp(1));interp2(h2(:,:,2,1),vgset(ii).xp(2),vgset(ii).xp(1)),interp2(h2(:,:,2,2),vgset(ii).xp(2),vgset(ii).xp(1))];
-        b = [interp2(h1(:,:,1),vgset(ii).xp(2),vgset(ii).xp(1));interp2(h2(:,:,2),vgset(ii).xp(2),vgset(ii).xp(1))] + (x - z(:,j))*VisualGaussian_llh_PHD(vgset(ii).xp,z(:,j),setup.Ac.likeparams);
-        A = A+ vgset(ii).PD*lambda*a/(r+Cz(:,j));
-        B = B+ vgset(ii).PD*b/(r+Cz(:,j));
-    end
+%         a = [interp2(h2(:,:,1,1),vgset(ii).xp(2),vgset(ii).xp(1)),interp2(h2(:,:,1,2),vgset(ii).xp(2),vgset(ii).xp(1));interp2(h2(:,:,2,1),vgset(ii).xp(2),vgset(ii).xp(1)),interp2(h2(:,:,2,2),vgset(ii).xp(2),vgset(ii).xp(1))];
+%         b = [interp2(h1(:,:,1),vgset(ii).xp(2),vgset(ii).xp(1));interp2(h2(:,:,2),vgset(ii).xp(2),vgset(ii).xp(1))] + (x - z(:,j))*VisualGaussian_llh_PHD(vgset(ii).xp,z(:,j),setup.Ac.likeparams);
+%         A = A+ vgset(ii).PD*lambda*a/(r+Cz(:,j));
+%         B = B+ vgset(ii).PD*b/(r+Cz(:,j));
+%     end
 
     slope_real(:,ii) = -1*B;%-1*(A+vgset(ii).PP(1:2,1:2))^-1*B;
 end
