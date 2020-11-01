@@ -132,7 +132,7 @@ addpath( Init_PATH );
 %DATA_PATH = '../Data';           % Point the folder where the data are located. % ../../../Data
 %addpath( DATA_PATH ); 
 
-setup.algs = {'NPF-SMC_PHD_S', 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD' };
+setup.algs = {'NPF-SMC_PHD_S'}; %, 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD','NPF-SMC_PHD_S' 
 %'SMC_PHD', 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD', 'ZPF-SMC_PHD','NPF-SMC_PHD_S'
 
 setup.ospa_c = 40;
