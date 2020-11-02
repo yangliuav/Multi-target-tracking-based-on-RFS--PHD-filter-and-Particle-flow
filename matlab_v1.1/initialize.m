@@ -118,17 +118,22 @@
 
 alg_path = fileparts(mfilename('fullpath'));
 
-addpath(fullfile(alg_path,'ekfukf'));
-addpath(fullfile(alg_path,'particle_filter'));
-addpath(fullfile(alg_path,'particle_flow'));
-addpath(fullfile(alg_path,'SmHMC'));
-addpath(fullfile(alg_path,'plotting'));
-addpath(fullfile(alg_path,'tools'));
-addpath(fullfile(alg_path,'SMCPHD'));
-addpath(fullfile(alg_path,'Acoustic_Example'));
- 
-Init_PATH = fullfile(alg_path,'Core_files','Init');           % Point the folder where the data are located.
-addpath( Init_PATH ); 
+addpath(fullfile(alg_path,'/Core_files/ekfukf'));
+addpath(fullfile(alg_path,'/Core_files/particle_filter'));
+addpath(fullfile(alg_path,'/Core_files/particle_flow'));
+addpath(fullfile(alg_path,'/Core_files/SmHMC'));
+addpath(fullfile(alg_path,'/Core_files/SMCPHD'));
+addpath(fullfile(alg_path,'/Utils/plotting'));
+addpath(fullfile(alg_path,'/Utils/tools'));
+
+if exist('result/Groundtrue','dir')==0
+    mkdir result Groundtrue
+end
+
+
+% Useless right now
+%Init_PATH = fullfile(alg_path,'Core_files','Init');           % Point the folder where the data are located.
+%addpath( Init_PATH ); 
 %DATA_PATH = '../Data';           % Point the folder where the data are located. % ../../../Data
 %addpath( DATA_PATH ); 
 
@@ -170,18 +175,18 @@ inp.random_seeds = randsample(1e5*inp.nspeaker,inp.nspeaker);
 inp.dimState_all = 4;
 switch inp.example_name
     case 'Acoustic'
-        addpath('Acoustic_Example');
+        addpath(fullfile(alg_path,'/Data/Acoustic_Example'));
         Ac = Acoustic_example_initialization(inp);
         setup.Ac = Ac;
     case 'Septier16'
-        addpath('Septier16');
+        addpath(fullfile(alg_path,'/Data/Septier16'));
         ps = Septier16_initialization(ps);
     case 'Visual'
-        addpath('Visual_Example');
+        addpath(fullfile(alg_path,'/Data/Visual_Example'));
         Ac = Visual_example_initialization(inp);
         setup.Ac = Ac;
     case 'Locata'
-        addpath(fullfile(alg_path,'Locata_Example'));
+        addpath(fullfile(alg_path,'/Data/Locata_Example'));
         Ac = Locata_example_initialization(inp);
         setup.Ac = Ac;
         

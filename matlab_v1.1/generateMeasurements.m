@@ -114,6 +114,7 @@ if setup.out.print_frame
     dt = [dt,'.png'];
     
     file_path = fileparts(mfilename('fullpath'));
+    
     print(gcf,'-painters','-dpng',fullfile(file_path,'result','Groundtrue',dt));
 %     export_fig('setup.pdf');
 end
