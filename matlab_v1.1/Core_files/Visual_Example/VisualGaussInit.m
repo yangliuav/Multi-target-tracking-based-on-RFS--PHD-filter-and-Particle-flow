@@ -7,7 +7,7 @@ function [xp,m0,P0] = VisualGaussInit(ps, nParticle )
 
 initparams = ps.initparams;
 sigma0 = initparams.sigma0;
-x0 = initparams.x0;
+x0 = initparams.x0; % detect result bbox 
 dim = size(x0,1);
 area =initparams.survRegion;
 out_of_bound = true;
