@@ -13,3 +13,6 @@ To Do List:
 当前matlab_v1.1文件夹 下载后可以直接运行run.m文件进行simple test
 
 我们目前要输入真实数据 进行测试代码
+
+
+I have completed vision branch data input. Audio branch is in process.
