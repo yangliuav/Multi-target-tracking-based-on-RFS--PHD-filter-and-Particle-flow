@@ -14,7 +14,8 @@ function [vg,vgset,setup] = propagateAndEstimatePriorCovariancePHD(vg,vgset,setu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ps = setup.Ac;
 tt = ps.propparams.time_step;
-% Propagate the particles one step, without introducing dynamic noise.
+% Propagate the particles one step, without introducing dynamic noise. //
+% initialization some params;
 propparams_no_noise = ps.propparams;
 switch ps.example_name
     case 'Visual'
@@ -89,6 +90,8 @@ end
 %     ps.setup.plotfcn(vg,ps,zeros(size(vg.xp)),tt,'Prior');
 % end
 setup.Ac = ps;
+
+%%// call one function here;
 
 if setup.out.print_frame 
     cmap = hsv(7);  %# Creates a 6-by-3 set of colors from the HSV colormap

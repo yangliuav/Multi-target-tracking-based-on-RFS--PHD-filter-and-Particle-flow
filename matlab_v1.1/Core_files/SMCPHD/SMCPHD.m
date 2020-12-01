@@ -36,7 +36,8 @@ for tt = 1:size(z,2)
     [vg,vgset,setup] = propagateAndEstimatePriorCovariancePHD(vg,vgset,setup);
 
  
-    [vgset,setup] = posteriorPHD(vgset,setup,z(:,tt),H,clutter);
+    [vgset,setup] = posteriorPHD(vgset,setup,z(:,tt),H,clutter);%% import detection result z(:,tt) tt index(frame number)
+   
     
     sumw = 0;
     sumw2 = 0;
