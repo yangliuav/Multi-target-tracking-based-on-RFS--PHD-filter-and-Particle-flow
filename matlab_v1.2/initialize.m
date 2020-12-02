@@ -123,7 +123,9 @@ addpath(fullfile(alg_path,'/Core_files/particle_filter'));
 addpath(fullfile(alg_path,'/Core_files/particle_flow'));
 addpath(fullfile(alg_path,'/Core_files/SmHMC'));
 addpath(fullfile(alg_path,'/Core_files/SMCPHD'));
-addpath(fullfile(alg_path,'/Core_files/Acoustic_Example'));
+addpath(fullfile(alg_path,'/Core_files/NPF'));
+addpath(fullfile(alg_path,'/Core_files/ZPF'));
+addpath(fullfile(alg_path,'/Simple_test/Acoustic_Example'));
 addpath(fullfile(alg_path,'/Utils/plotting'));
 addpath(fullfile(alg_path,'/Utils/tools'));
 addpath(fullfile(alg_path,'/Utils'));
@@ -139,7 +141,7 @@ end
 %DATA_PATH = '../Data';           % Point the folder where the data are located. % ../../../Data
 %addpath( DATA_PATH ); 
 
-setup.algs = {'SMC_PHD'}; %, 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD','NPF-SMC_PHD_S' 
+setup.algs = {'NPF-SMC_PHD'}; %, 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD','NPF-SMC_PHD_S' 
 %'SMC_PHD', 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD', 'ZPF-SMC_PHD','NPF-SMC_PHD_S'
 
 setup.ospa_c = 40;
@@ -177,14 +179,14 @@ inp.random_seeds = randsample(1e5*inp.nspeaker,inp.nspeaker);
 inp.dimState_all = 4;
 switch inp.example_name
     case 'Acoustic'
-        addpath(fullfile(alg_path,'/Core_files/Acoustic_Example'));
+        addpath(fullfile(alg_path,'/Simple_test/Acoustic_Example'));
         Ac = Acoustic_example_initialization(inp);
         setup.Ac = Ac;
     case 'Septier16'
-        addpath(fullfile(alg_path,'/Core_files/Septier16'));
+        addpath(fullfile(alg_path,'/Simple_test/Septier16'));
         ps = Septier16_initialization(ps);
     case 'Visual'
-        addpath(fullfile(alg_path,'/Core_files/Visual_Example'));
+        addpath(fullfile(alg_path,'/Simple_test/Visual_Example'));
         Ac = Visual_example_initialization(inp);
         setup.Ac = Ac;
     case 'Real_Data'
@@ -192,7 +194,7 @@ switch inp.example_name
         Ac = Visual_example_initialization(inp);
         setup.Ac = Ac;
     case 'Locata'
-        addpath(fullfile(alg_path,'/Core_files/Locata_Example'));
+        addpath(fullfile(alg_path,'/Simple_test/Locata_Example'));
         Ac = Locata_example_initialization(inp);
         setup.Ac = Ac;
         
