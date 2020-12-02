@@ -3,7 +3,7 @@ rng('default');
 
 %% Initialize the simulation setup and filter parameter values
 initialize;
-addpath('initialization/');
+addpath(fullfile(fileparts(mfilename('fullpath')),'/Utils/initialization/'));
 %ps_initial = initializePS(setup.algs);
 
 %% Generate states and measurements for all simulation trials.
