@@ -24,7 +24,7 @@
 %   use_cluster : whether use cluster
 %   maxilikeSAP : parameters for calculating the particle estimate
 %   maxilikemode : the mode for calculating the particle estimate
-%   nTrial : the times for running the experiments
+%   nTrial :   
 %   weight_euclidean : the weight of Euclidean distances when performing clustering using 'euclidean_slope'
 %   nParticleCluster : number of particle clusters used to calculate the slope
 %   Neff_thresh_ratio : the thresh of ESS
@@ -134,13 +134,6 @@ if exist('result/Groundtrue','dir')==0
     mkdir result Groundtrue
 end
 
-
-% Useless right now
-%Init_PATH = fullfile(alg_path,'Core_files','Init');           % Point the folder where the data are located.
-%addpath( Init_PATH ); 
-%DATA_PATH = '../Data';           % Point the folder where the data are located. % ../../../Data
-%addpath( DATA_PATH ); 
-
 setup.algs = {'NPF-SMC_PHD'}; %, 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD','NPF-SMC_PHD_S' 
 %'SMC_PHD', 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD', 'ZPF-SMC_PHD','NPF-SMC_PHD_S'
 
@@ -173,8 +166,8 @@ inp.ztype = 'SRP'; %'DOA' or 'SRP'
 inp.T = 1;
 inp.K = 50;
 inp.H = [1,0,0,0;0,1,0,0]';
-inp.nspeaker = 4;
-inp.example_name = 'Visual' %'Acoustic';%'Visual';%'Acoustic';
+inp.nspeaker = 3;
+inp.example_name = 'Real_Data' %'Acoustic';%'Visual';%'Acoustic';%'Real_Data'
 inp.random_seeds = randsample(1e5*inp.nspeaker,inp.nspeaker);
 inp.dimState_all = 4;
 switch inp.example_name
@@ -190,8 +183,7 @@ switch inp.example_name
         Ac = Visual_example_initialization(inp);
         setup.Ac = Ac;
     case 'Real_Data'
-        addpath(fullfile(alg_path,'/Core_files/Visual_Example'));
-        Ac = Visual_example_initialization(inp);
+        Ac = AV_example_initialization(inp);
         setup.Ac = Ac;
     case 'Locata'
         addpath(fullfile(alg_path,'/Simple_test/Locata_Example'));

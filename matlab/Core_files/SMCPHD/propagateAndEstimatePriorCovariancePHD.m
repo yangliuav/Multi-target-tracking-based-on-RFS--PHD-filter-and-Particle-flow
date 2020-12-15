@@ -22,6 +22,11 @@ switch ps.example_name
         propparams_no_noise.Phi = ps.propparams.Phi(1:4,1:4);
         ps.propparams.Phi = ps.propparams.Phi(1:4,1:4);
         ps.propparams.Q   = ps.propparams.Q(1:4,1:4);
+    case 'Real_Data'
+        propparams_no_noise.Q = 0*ps.propparams.Q(1:4,1:4);
+        propparams_no_noise.Phi = ps.propparams.Phi(1:4,1:4);
+        ps.propparams.Phi = ps.propparams.Phi(1:4,1:4);
+        ps.propparams.Q   = ps.propparams.Q(1:4,1:4);
     case 'Acoustic'
 %         propparams_no_noise.Q = 0*ps.propparams.Q;
 %         propparams_no_noise.Phi = ps.propparams.Phi;

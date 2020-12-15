@@ -4,29 +4,13 @@ function av_smc_phd(sequence, cam_number)
 %
 % Details about the algorithm can be found in the paper:
 % V. Kilic, M. Barnard, W. Wang, A. Hilton and J. Kittler, 
-% "Mean-Shift and Sparse Sampling Based SMC-PHD Filtering for Audio 
-% Informed Visual Speaker Tracking", IEEE Transactions on Multimedia, 
-% vol. XX, no. X, pages XX, XXX 2016.
-
-% =========================================================================
-% Input:  
-% sequence    -     name of the sequence.
-% cam_number  -     camera number.
-% =========================================================================
-
-    
-%%  Initial Part  
-
-% Choose seed_number
-seed_number     =   seed_selection_av(sequence, cam_number); 
-rng(seed_number);                   % Random number generator
-
-flag.print_frame        =   1;      % At the beginnig we need to set print_flag 1 to see whether code works properly
+% "Mean-Shi  1;      % At the beginnig we need to set print_flag 1 to see whether code works properly
                                     % When we start parallel running, it should be set to 0.
 flag.plot_particles     =   1;      % Flag in order to decide plotting particles
 flag.draw_doa_line      =   1;
 flag.save_frame         =   1;
 flag.save_plot_wspace   =   0;
+flag.print_frame        =   1;
 
 initialize_av_smc_phd;                         % Define initial parameter and plot initial frame
 

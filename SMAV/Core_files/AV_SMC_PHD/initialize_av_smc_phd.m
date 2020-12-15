@@ -205,6 +205,6 @@ if flag.print_frame
     frame.av_smcphd         =   read(TrackedMov,start_frame ); % first image
     imshow(frame.av_smcphd);
     title('AV-SMC-PHD with color likelihood','FontSize',10,'FontWeight','normal');
-    xlabel(['Frame = ', num2str(start_frame), ' Seed number = ',  num2str(seed_number), ' rho = ', num2str(rho) ] )
+    %xlabel(['Frame = ', num2str(start_frame), ' Seed number = ',  num2str(seed_number), ' rho = ', num2str(rho) ] )
     hold on;
 end

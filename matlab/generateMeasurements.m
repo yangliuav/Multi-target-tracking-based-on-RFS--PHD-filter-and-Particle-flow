@@ -41,6 +41,10 @@ for track_ix = 1:1
             x = VisualGenerateTracksPHD(setup);    
             c = VisualGenerateClutterPHD(setup); 
             y = VisualGenerateMeasurementsPHD(x,c,setup);
+        case 'Real_Data'
+            x = VisualGenerateTracksPHD(setup);    
+            c = VisualGenerateClutterPHD(setup); 
+            y = VisualGenerateMeasurementsPHD(x,c,setup);
     end
     x_all{track_ix}=x;
     c_all{track_ix}=c;

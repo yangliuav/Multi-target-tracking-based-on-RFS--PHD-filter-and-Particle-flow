@@ -11,7 +11,10 @@ function tracking_output = run_one_trial(ps,trial_ix)
 
 tracking_output = [];
 
-trial_ix = ps.trial_ix;
+if ~trial_ix
+    trial_ix = ps.trial_ix;
+end
+
 path = ['./result/',num2str(trial_ix)];
 if exist(path,'dir')==0
    mkdir(path);
@@ -25,6 +28,9 @@ switch ps.Ac.example_name
         ps.x = ps.inp.x_all{ceil(trial_ix/ps.Ac.setup.nAlg_per_track)};
         y = ps.inp.y_all;
     case 'Visual'  
+        ps.x = ps.inp.x_all{ceil(1)};
+        y = ps.inp.y_all;
+    case 'Real_Data'  
         ps.x = ps.inp.x_all{ceil(1)};
         y = ps.inp.y_all;
 end

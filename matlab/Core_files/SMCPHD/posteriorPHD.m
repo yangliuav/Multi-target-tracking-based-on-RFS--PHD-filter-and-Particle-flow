@@ -11,6 +11,8 @@ function [vgset,setup] = posteriorPHD(vgset,setup,z_current,H,clutter)
                     [x,y] = generateSeptier16TrackMeasurements(setup);
                 case 'Visual'
                     vgset(j).llh(:,i) =  VisualGaussian_llh_PHD(vgset(j).xp,z(:,i),setup.Ac.likeparams);
+                case 'Real_Data'
+                    vgset(j).llh(:,i) =  VisualGaussian_llh_PHD(vgset(j).xp,z(:,i),setup.Ac.likeparams);
                 case 'Locata'
                     vgset(j).llh(:,i) = interp2(H,vgset(j).xp(2),vgset(j).xp(1))*VisualGaussian_llh_PHD(vgset(j).xp,z(:,i),setup.Ac.likeparams);
                     if isnan(vgset(j).llh(:,i) ) 

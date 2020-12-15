@@ -28,7 +28,7 @@ for tt = 1:size(z,2)
         H  = setup.inp.H_all{tt}.h;
         vgset = SpawnAndBirthParticleWithMeasurement(setup,vgset,cell2mat(z(tt)),H);
     else
-        vgset = SpawnAndBirthParticle(setup,vgset);
+        vgset = SpawnAndBirthParticle(setup,vgset,tt); % add tt(framenumber)
         H= [];
     end
     %%% propagate particles using prior and estimate the prior covariance matrix for particle flow filters.

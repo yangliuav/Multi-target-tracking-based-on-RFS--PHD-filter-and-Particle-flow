@@ -149,7 +149,20 @@ elseif strcmp(sequence, 'seq45-3p-1111')
         else
             line_cord(line_y>150 | line_y <50 ,:) = []; % Delete the points out of range
             bandwith_of_points  = 60;
-         end   
+        end
+    elseif cam_number == 3  
+        if doa_to_use < -20
+            line_cord(line_y>160 | line_y <60 ,:) = []; % Delete the points out of range
+            line_x(line_y>160 | line_y <60 ,:) = [];
+            line_cord(line_x <160 ,:) = []; % Delete the points out of range
+
+              bandwith_of_points  = 60;            
+        elseif doa_to_use< 115 && doa_to_use > -20 
+            line_cord(line_y>100 | line_y <50 ,:) = []; % Delete the points out of range
+            bandwith_of_points  = 60;
+        else
+            line_cord(line_x>280 | line_x <90 ,:) = []; % Delete the points out of range
+            bandwith_of_points  = 60;
+        end
     end       
-    
 end

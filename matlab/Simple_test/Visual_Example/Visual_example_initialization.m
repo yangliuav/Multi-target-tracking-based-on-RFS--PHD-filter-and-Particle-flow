@@ -1,4 +1,4 @@
-function ps = Visual_example_initialization(ps)
+ function ps = Visual_example_initialization(ps)
 
 ps.setup.nParticle = 50;% number of particles used in particle flow type algorithms.
 
