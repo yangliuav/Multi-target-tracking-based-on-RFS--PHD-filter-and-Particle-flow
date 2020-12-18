@@ -18,3 +18,6 @@ load(face_name);
 
 %%  Initial Algorithm
 initialize;
+
+%%  Generate Measurements
+

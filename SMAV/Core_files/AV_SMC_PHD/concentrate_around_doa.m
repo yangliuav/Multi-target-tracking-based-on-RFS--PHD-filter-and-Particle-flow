@@ -41,8 +41,8 @@ for i=1:length(Z)
 
     Q(i,:)=[Q5' Q6' m3]; 
 end
-Q_name = ['Q' num2str(FrameNumber) '.mat'];
-save(Q_name,'Q')
+% Q_name = ['Q' num2str(FrameNumber) '.mat'];
+% save(Q_name,'Q')
 %% Move the particles
  
 % calculate min distances with line label

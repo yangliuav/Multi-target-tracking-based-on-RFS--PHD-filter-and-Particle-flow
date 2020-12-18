@@ -126,7 +126,7 @@ end
 
 %[hat_X_track,~,~]   =   extract_tracks(hat_X,hat_track_list,Data.posGT.N_speaker);
 [hat_X_track,~,~]   =   extract_tracks(hat_X,hat_track_list,seq_info.speaker);
-[dist_ospa_t_vk ]   =   perf_asses_vk(Data.posGT.X_true(:,start_frame:K,:),hat_X_track(:,start_frame:K,:)); 
+[dist_ospa_t_vk ]   =   perf_asses_vk(Data.posGT.X_true(:,start_frame:K,:),hat_X_track(:,start_frame:K,:));  % Calculate OSPA
 
 figure(4)
 plot(start_frame:K,dist_ospa_t_vk ,'-r','Linewidth',line_width);

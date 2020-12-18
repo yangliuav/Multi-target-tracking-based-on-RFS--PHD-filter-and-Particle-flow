@@ -167,7 +167,7 @@ inp.T = 1;
 inp.K = 50;
 inp.H = [1,0,0,0;0,1,0,0]';
 inp.nspeaker = 3;
-inp.example_name = 'Real_Data' %'Acoustic';%'Visual';%'Acoustic';%'Real_Data'
+inp.example_name = 'Visual' %'Acoustic';%'Visual';%'Acoustic';%'Real_Data'
 inp.random_seeds = randsample(1e5*inp.nspeaker,inp.nspeaker);
 inp.dimState_all = 4;
 switch inp.example_name
@@ -183,6 +183,7 @@ switch inp.example_name
         Ac = Visual_example_initialization(inp);
         setup.Ac = Ac;
     case 'Real_Data'
+        addpath(fullfile(alg_path,'/Simple_test/Real_Data'));
         Ac = AV_example_initialization(inp);
         setup.Ac = Ac;
     case 'Locata'
@@ -191,7 +192,7 @@ switch inp.example_name
         setup.Ac = Ac;
         
 end
-
+clear Ac;
 
 out.print_frame = 1;
 out.plot_particles = 0;
@@ -274,4 +275,9 @@ setup.inp = inp;
 setup.out = out;
 setup.PHD = PHD;
 setup.PF  = PF; 
+
+clear inp;
+clear out;
+clear PHD;
+clear PF;
 %setup.inp

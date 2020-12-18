@@ -64,7 +64,7 @@ end
 
 
 
-
+%% plot modify
 dt = datestr(now,'yyyymmddHHMM')
 dt = [dt,'_',num2str(trial_ix),'.mat'];
 save(dt);
