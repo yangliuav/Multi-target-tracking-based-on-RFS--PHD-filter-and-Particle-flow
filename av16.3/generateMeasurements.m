@@ -34,7 +34,8 @@ for track_ix = 1:1
     %c = [];% clutter no use
     y = face;
 %     if ~isempty(face(1))
-%         y = zeros(1,12);% measurement face[] dic{face(),audio (Q)} deep learning(face,mat)
+%         y = zeros(1,12);% measurement face[] dic{face(),audio (Q)} deep
+%         learning(face,mat)++
 %     else
 %         y = face(1);
 %     end

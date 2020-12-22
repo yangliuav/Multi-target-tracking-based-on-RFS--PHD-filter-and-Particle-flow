@@ -1,4 +1,4 @@
-function [output,position] = SMCPHD(setup,z, video)
+function [output,position] = SMCPHD(setup,z, video,Z_doa)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Implement the Particle flow particle filter.
 %
@@ -22,7 +22,7 @@ output.Nspeakerx = zeros(1,size(z,2));
 output.timecost = zeros(1,size(z,2));
 output.OSPA = zeros(1,size(z,2));
 clutter = 0.0035;
-for tt = 1:size(z,2)%%  test
+for tt = 331:size(z,2)%%  test
     set(gcf);clf('reset')
     frm = read(video,tt);
     imshow(frm);
@@ -32,7 +32,7 @@ for tt = 1:size(z,2)%%  test
         H  = setup.inp.H_all{tt}.h;
         vgset = SpawnAndBirthParticleWithMeasurement(setup,vgset,cell2mat(z(tt)),H);
     else
-        vgset = SpawnAndBirthParticle(setup,vgset,tt); % add tt(framenumber) matrix Q cannot work well  
+        vgset = SpawnAndBirthParticle(setup,vgset,tt,Z_doa); % add tt(framenumber) matrix Q cannot work well  
         H= [];
     end
     %%% propagate particles using prior and estimate the prior covariance matrix for particle flow filters.
