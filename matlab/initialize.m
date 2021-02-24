@@ -125,6 +125,7 @@ addpath(fullfile(alg_path,'/Core_files/SmHMC'));
 addpath(fullfile(alg_path,'/Core_files/SMCPHD'));
 addpath(fullfile(alg_path,'/Core_files/NPF'));
 addpath(fullfile(alg_path,'/Core_files/ZPF'));
+addpath(fullfile(alg_path,'/Core_files/IPF'));
 addpath(fullfile(alg_path,'/Simple_test/Acoustic_Example'));
 addpath(fullfile(alg_path,'/Utils/plotting'));
 addpath(fullfile(alg_path,'/Utils/tools'));
@@ -134,7 +135,7 @@ if exist('result/Groundtrue','dir')==0
     mkdir result Groundtrue
 end
 
-setup.algs = {'NPF-SMC_PHD'}; %, 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD','NPF-SMC_PHD_S' 
+setup.algs = {'IPF-SMC_PHD'}; %, 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD','NPF-SMC_PHD_S','IPF-SMC-PHD'
 %'SMC_PHD', 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD', 'ZPF-SMC_PHD','NPF-SMC_PHD_S'
 
 setup.ospa_c = 40;

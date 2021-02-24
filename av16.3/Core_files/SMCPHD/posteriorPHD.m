@@ -1,8 +1,17 @@
 function [vgset,setup] = posteriorPHD(vgset,setup,z_current,H,clutter,frm)
-    z = cell2mat(z_current);
-    if isempty(z)
-        z = zeros(2,6)
+%     z = cell2mat(z_current);
+%     if isempty(z)
+%         z = zeros(2,6)
+%     end
+%     
+    tz = cell2mat(z_current);
+    z = zeros(2,6);
+    [zx,zy] = size(tz)
+    for i = 1:zx
+        z(:,i) = tz(i,[1 2]);
     end
+    
+    
     xz = 0;
     Cz =  zeros(1,size(z,2));
     for i = 1:size(z,2)

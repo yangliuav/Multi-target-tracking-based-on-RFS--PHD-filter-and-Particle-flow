@@ -149,6 +149,9 @@ if setup.out.print_frame
         case 'NPF'
             path = [path, '/NPF/'];
             title(['Particles of NPF-SMC-PHD filter after predicting and birthing at k = ',num2str(tt)],'FontSize',16);
+        case 'IPF'
+            path = [path, '/IPF/'];
+            title(['Particles of IPF-SMC-PHD filter after predicting and birthing at k = ',num2str(tt)],'FontSize',16);
         case 'SMC'
             path = [path, '/SMC/'];
             title(['Particles of SMC-PHD filter filter after predicting and birthing at k = ',num2str(tt)],'FontSize',16);

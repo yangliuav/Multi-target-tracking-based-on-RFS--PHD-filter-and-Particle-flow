@@ -73,7 +73,7 @@ for particle_ix = 1:size(H,3)
 % Reshape to a [zdim,1,N] matrix to facilitate later computation
     zc = reshape(zc,[zdim,1,size(zc,2)]);
 
-    if size(setup.Ac.likeparams.R,3) > 1
+    if size(setup.Ac.likeparams.R,3) > 1na
         Ri = squeeze(ps.likeparams.R(:,:,particle_ix));
     else
         Ri = squeeze(setup.Ac.likeparams.R);

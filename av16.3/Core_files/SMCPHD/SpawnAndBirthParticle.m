@@ -16,10 +16,14 @@ for i = (numParticle+1):(numParticle+setup.nParticle)
 end
 
 Q_name = [setup.alg_path '\Data\seq45\Q\' 'Q' num2str(FrameNumber) '.mat']
-    if exist(Q_name,'file') 
+angle = Z_doa{FrameNumber};
+angle(angle>102)  =   [];  % Erase the DOA angle larger than 115
+angle(angle<-55)  =   [];  % Erase the DOA angle larger than -55
+Z = angle;
+    if ~isempty(Z)
         load(Q_name)
         %% Move the particles
-        Z = Z_doa{FrameNumber};
+        
         
         % calculate min distances with line label
         for i=1:size(vgset,2)  % For each particle

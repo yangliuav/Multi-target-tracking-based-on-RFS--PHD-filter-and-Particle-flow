@@ -147,6 +147,9 @@ for lambda = setup.lambda_range
             case 'NPF'
                 path = [path, '/NPF/'];
                 title(['Particles of NPF-SMC-PHD filter at k =',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',16);
+            case 'IPF'
+                path = [path, '/IPF/'];
+                title(['Particles of IPF-SMC-PHD filter at k =',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',16);
             case 'NPFS'
                 path = [path, '/NPFS/'];
                 title(['Particles of NPF-SMC-PHD_S filter at k =',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',16);

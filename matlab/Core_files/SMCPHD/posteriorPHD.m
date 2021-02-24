@@ -33,6 +33,8 @@ function [vgset,setup] = posteriorPHD(vgset,setup,z_current,H,clutter)
                 vgset = particleFlowPHD(vgset,setup,z,Cz);
             case {'NPF','NPFS'}
                 vgset = particleFlowPHD(vgset,setup,z,Cz);
+            case 'IPF'
+                vgset = particleFlowPHD(vgset,setup,z,Cz);
             case 'SMC'
         end   
     end

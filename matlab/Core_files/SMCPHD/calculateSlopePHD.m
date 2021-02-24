@@ -25,5 +25,7 @@ if lambda >0
             [slope, log_jacobian_det] = NPF_homotopy_PHDV2(z_current,vgset,setup,lambda,step_size,Cz);
         case {'NPFS'}
             [slope, log_jacobian_det] = NPF_single_homotopy_PHDV2(z_current,vgset,setup,lambda,step_size,Cz);
+        case {'IPF'} % New add IPF here, but not for sure this!
+            [slope_real, log_jacobian_det, B] = IPF_homotopy_PHD(z_current,vgset,setup,lambda,step_size,Cz,varargin);
     end
 end

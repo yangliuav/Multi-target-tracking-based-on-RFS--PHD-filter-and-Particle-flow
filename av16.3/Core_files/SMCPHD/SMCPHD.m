@@ -22,7 +22,7 @@ output.Nspeakerx = zeros(1,size(z,2));
 output.timecost = zeros(1,size(z,2));
 output.OSPA = zeros(1,size(z,2));
 clutter = 0.0035;
-for tt = 331:size(z,2)%%  test
+for tt = 1:size(z,2)%%  test
     set(gcf);clf('reset')
     frm = read(video,tt);
     imshow(frm);

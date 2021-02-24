@@ -22,6 +22,7 @@ if exist(path,'dir')==0
    mkdir([path,'/NPF']);
    mkdir([path,'/NPFS']);
    mkdir([path,'/SMC']);
+   mkdir([path,'/IPF']);
 end
 switch ps.Ac.example_name
     case 'Acoustic'
@@ -62,7 +63,11 @@ if ismember('ZPF-SMC_PHD',ps.algs)
     tracking_output.ZPFSMC = SMCPHD(ps_new,y);
 end
 
-
+if ismember('IPF-SMC_PHD',ps.algs)
+    ps_new = ps;
+    ps_new.pf_type = 'IPF';
+    tracking_output.IPFSMC = SMCPHD(ps_new,y);
+end
 
 %% plot modify
 dt = datestr(now,'yyyymmddHHMM')

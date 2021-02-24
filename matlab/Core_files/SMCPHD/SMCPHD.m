@@ -35,7 +35,7 @@ for tt = 1:size(z,2)
     tic;
     [vg,vgset,setup] = propagateAndEstimatePriorCovariancePHD(vg,vgset,setup);
 
- 
+    z(:,tt)
     [vgset,setup] = posteriorPHD(vgset,setup,z(:,tt),H,clutter);
     
     sumw = 0;
