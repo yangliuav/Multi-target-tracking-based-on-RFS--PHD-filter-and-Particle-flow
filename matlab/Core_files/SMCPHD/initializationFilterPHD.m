@@ -33,6 +33,7 @@ for i = 1:size(vg.xp,2)*4
     vgset(i).logW = 0;
     vgset(i).w = 4/200;
     vgset(i).PD = 1;
+    vgset(i).B = 0;
 end
 
 

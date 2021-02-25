@@ -13,6 +13,7 @@ for i = (numParticle+1):(numParticle+setup.nParticle)
     vgset(i).logW = 0;
     vgset(i).w  = 1/50;
     vgset(i).PD = 1;
+    vgset(i).B = 0;
 end
 
 Q_name = ['Q' num2str(FrameNumber) '.mat'];

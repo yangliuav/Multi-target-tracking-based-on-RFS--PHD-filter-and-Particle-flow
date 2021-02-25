@@ -129,6 +129,9 @@ for tt = 1:size(z,2)
                 case 'ZPF'
                     path = [path, '/ZPF/'];
                     title(['Particles of ZPF-SMC-PHD filter before resampling and clipping at k = ',num2str(tt)],'FontSize',16);
+                case 'IPF'
+                    path = [path, '/IPF/'];
+                    title(['Particles of IPF-SMC-PHD filter before resampling and clipping at k = ',num2str(tt)],'FontSize',16);
                 case 'NPF'
                     path = [path, '/NPF/'];
                     title(['Particles of NPF-SMC-PHD filter before resampling and clipping at k = ',num2str(tt)],'FontSize',16);
@@ -167,6 +170,7 @@ for tt = 1:size(z,2)
                 vgset(i).xp_m = vgset(i).xp;
                 vgset(i).w  = particle_weight(:,i);
                 vgset(i).PD = 1; % remove later
+                vgset(i).B = 0;
             end
             %speakerx3 = clusterMEAP(particle_state,particle_weight,particle_wlik,Tno);
         else
@@ -235,6 +239,9 @@ for tt = 1:size(z,2)
             switch setup.pf_type
                 case 'ZPF'
                     path = [path, '/ZPF/'];
+                    title(['Estimated taregts and resampled or clipped particles at k = ',num2str(tt)],'FontSize',16);
+                case 'IPF'
+                    path = [path, '/IPF/'];
                     title(['Estimated taregts and resampled or clipped particles at k = ',num2str(tt)],'FontSize',16);
                 case 'NPF'
                     path = [path, '/NPF/'];
