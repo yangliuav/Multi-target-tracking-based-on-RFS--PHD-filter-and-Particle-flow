@@ -95,15 +95,16 @@ for lambda = setup.lambda_range
     lambda_prev = lambda;
         
     
-    if setup.out.print_frame 
-           cmap = hsv(7);  %# Creates a 6-by-3 set of colors from the HSV colormap
-           set(gcf);clf('reset');hold on;
-           imshow(frm); hold on;
-%             figure(20);clf;hold on;
-%             set(gcf, 'Position', [100, 100, 1000, 900]);
-%                 load 'sensorsXY';
-            fontsize = 24;
-            if isfield(setup.inp,'x_all')
+    if setup.out.print_frame
+        cmap = hsv(7);  %# Creates a 6-by-3 set of colors from the HSV colormap
+        set(gcf);clf('reset');hold on;
+        imshow(frm);
+        drawnow;
+        
+        ct = 0;
+
+        fontsize = 24;
+            if isfield(setup.inp,'x_all') % plot Ground Truth
                 xx = cell2mat(setup.inp.x_all);
                 xxt  =xx(:,tt);
                 for i = 1: setup.Ac.nspeaker
@@ -111,25 +112,26 @@ for lambda = setup.lambda_range
                     y_pos_i = xxt((i-1)*4+2,:);
                     x_pos_i(x_pos_i==0) = NaN;
                     y_pos_i(y_pos_i==0) = NaN;
-                    plot(x_pos_i,y_pos_i,'-s','Color',cmap(i,:),'LineWidth',5,'MarkerSize',20);  %# Plot each column with a
+                    hold on;
+                    if ~isnan(x_pos_i) && ~isnan(y_pos_i)
+                        plot(x_pos_i,y_pos_i,'-s','Color',cmap(i,:),'LineWidth',5,'MarkerSize',20);  %# Plot each column with a
+                        ct=ct+1;
+                    end
+%                     plot(x_pos_i,y_pos_i,'-s','Color',cmap(i,:),'LineWidth',5,'MarkerSize',20);  %# Plot each column with a
                 end
 
             end
 
-            if isfield(setup.inp,'c_all')
-                cc = cell2mat(setup.inp.c_all);
-                cct  =cc(:,tt);
-                for i = 1:size(cct,1)/4
-                    x_pos_i = cct((i-1)*4+1,:);
-                    y_pos_i = cct((i-1)*4+2,:);
-                    plot(x_pos_i(1),y_pos_i(1),'xk','Color',cmap(i+4,:),'LineWidth',3,'MarkerSize',30);  %# Plot each column with a
+            for i = 1: size(vgset,2) % plot particles
+                if ct ==0
+                    break;
                 end
-            end
-
-            for i = 1: size(vgset,2)
                 x_pos_i = vgset(i).xp(1,:);
                 y_pos_i = vgset(i).xp(2,:);
-                plot(x_pos_i(1),y_pos_i(1),'o','Color',[1,1,0.5],'LineWidth',3,'MarkerSize',5);  %# Plot each column with a %1-1*vgset(i).w/max(particle_weight)
+                hold on;
+                if x_pos_i >=0 && y_pos_i>=0
+                    plot(x_pos_i(1),y_pos_i(1),'o','Color',[1,1,0.5],'LineWidth',3,'MarkerSize',5);  %# Plot each column with a %1-1*vgset(i).w/max(particle_weight)
+                end
             end
 
     %        h_leg=legend('Sensor','Target 1','Target 2','Target 3','Target 4','starting position');
@@ -149,16 +151,19 @@ for lambda = setup.lambda_range
         switch setup.pf_type
             case 'ZPF'
                 path = [path, '/ZPF/'];
-                title(['Particles of ZPF-SMC-PHD filter at k = ',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',16);
+                title(['Particles of ZPF-SMC-PHD filter at k = ',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',8);
+            case 'IPF'
+                path = [path, '/IPF/'];
+                title(['Particles of IPF-SMC-PHD filter at k = ',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',8);
             case 'NPF'
                 path = [path, '/NPF/'];
-                title(['Particles of NPF-SMC-PHD filter at k =',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',16);
+                title(['Particles of NPF-SMC-PHD filter at k =',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',8);
             case 'NPFS'
                 path = [path, '/NPFS/'];
-                title(['Particles of NPF-SMC-PHD_S filter at k =',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',16);
+                title(['Particles of NPF-SMC-PHD_S filter at k =',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',8);
             case 'SMC'
                 path = [path, '/SMC/'];
-                title(['Particles of SMC-PHD filter at k =',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',16);
+                title(['Particles of SMC-PHD filter at k =',num2str(tt),' and \lambda = ',num2str(lambda)],'FontSize',8);
         end
         path = [path, int2str(tt), '_',int2str(t),'.png'];
         print(gcf,'-painters','-dpng',path);

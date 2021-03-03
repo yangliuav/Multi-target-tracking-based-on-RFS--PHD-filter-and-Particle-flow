@@ -18,6 +18,7 @@ end
 path = ['./result/',num2str(trial_ix)];
 if exist(path,'dir')==0
    mkdir(path);
+   mkdir([path,'/IPF'])
    mkdir([path,'/ZPF']);
    mkdir([path,'/NPF']);
    mkdir([path,'/NPFS']);
@@ -62,9 +63,15 @@ if ismember('ZPF-SMC_PHD',ps.algs)
     tracking_output.ZPFSMC = SMCPHD(ps_new,y,video,Z_doa);
 end
 
+if ismember('IPF-SMC_PHD',ps.algs)
+    ps_new = ps;
+    ps_new.pf_type = 'IPF';
+    tracking_output.ZPFSMC = SMCPHD(ps_new,y,video,Z_doa);
+end
 
 
-%% plot modify
+
+%% plot modify （暂时不知道在何处调用,似乎是在最后调用，最后checking）
 dt = datestr(now,'yyyymmddHHMM')
 dt = [dt,'_',num2str(trial_ix),'.mat'];
 save(dt);

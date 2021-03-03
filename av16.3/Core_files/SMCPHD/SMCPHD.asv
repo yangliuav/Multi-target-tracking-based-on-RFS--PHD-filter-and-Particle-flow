@@ -22,7 +22,7 @@ output.Nspeakerx = zeros(1,size(z,2));
 output.timecost = zeros(1,size(z,2));
 output.OSPA = zeros(1,size(z,2));
 clutter = 0.0035;
-for tt = 321:size(z,2)%%  test frame setting
+for tt = 1:size(z,2)%%  test
     set(gcf);clf('reset')
     frm = read(video,tt);
     %imshow(frm);
@@ -96,7 +96,6 @@ for tt = 321:size(z,2)%%  test frame setting
                     y_pos_i = xxt((i-1)*4+2,:);
                     x_pos_i(x_pos_i==0) = NaN;
                     y_pos_i(y_pos_i==0) = NaN;
-                    hold on;
                     if ~isnan(x_pos_i) && ~isnan(y_pos_i)
                         plot(x_pos_i,y_pos_i,'-s','Color',cmap(i,:),'LineWidth',5,'MarkerSize',5);  %# Plot each column with a
                         ct = ct+1;
@@ -106,12 +105,11 @@ for tt = 321:size(z,2)%%  test frame setting
             end
 
             for i = 1: size(vgset,2)
-                if ct ==0
+                if c ==0
                     break;
                 end
                 x_pos_i = vgset(i).xp(1,:);
                 y_pos_i = vgset(i).xp(2,:);
-                hold on;
                 if x_pos_i>=0 && y_pos_i>=0 
                     plot(x_pos_i(1),y_pos_i(1),'o','Color',[1,1,1-1*vgset(i).w/max(particle_weight)],'LineWidth',3,'MarkerSize',10);  %# Plot each column with a %1-1*vgset(i).w/max(particle_weight)
                 end
@@ -122,7 +120,6 @@ for tt = 321:size(z,2)%%  test frame setting
                 end;
                 x_pos_i = speakerx(1,i);
                 y_pos_i = speakerx(2,i);
-                hold on;
                 if x_pos_i>=0 && y_pos_i>=0 
                     plot(x_pos_i(1),y_pos_i(1),'p','Color',cmap(7,:),'LineWidth',3,'MarkerSize',7);  %# Plot each column with a
                 end
@@ -215,9 +212,6 @@ for tt = 321:size(z,2)%%  test frame setting
                 for i = 1: setup.Ac.nspeaker
                     x_pos_i = xxt((i-1)*4+1,:);
                     y_pos_i = xxt((i-1)*4+2,:);
-                    x_pos_i(x_pos_i==0) = NaN;
-                    y_pos_i(y_pos_i==0) = NaN;
-                    hold on;
                     if ~isnan(x_pos_i) && ~isnan(y_pos_i)
                         plot(x_pos_i,y_pos_i,'-s','Color',cmap(i,:),'LineWidth',5,'MarkerSize',20);  %# Plot each column with a
                         ct=ct+1;
@@ -230,25 +224,15 @@ for tt = 321:size(z,2)%%  test frame setting
 
             for i = 1: size(vgset,2)
                 if ct==0
-                    break;
-                end
+                    break
                 x_pos_i = vgset(i).xp(1,:);
                 y_pos_i = vgset(i).xp(2,:);
-                hold on;
-                if x_pos_i>=0 && y_pos_i>=0 
-                    plot(x_pos_i(1),y_pos_i(1),'o','Color',[0,1,1],'LineWidth',3,'MarkerSize',10);  %# Plot each column with a %1-1*vgset(i).w/max(particle_weight)
-                end
+                plot(x_pos_i(1),y_pos_i(1),'o','Color',[0,1,1],'LineWidth',3,'MarkerSize',10);  %# Plot each column with a %1-1*vgset(i).w/max(particle_weight)
             end
             for i = 1: size(speakerx,2)
-                if ct==0
-                    break;
-                end
                 x_pos_i = speakerx(1,i);
                 y_pos_i = speakerx(2,i);
-                hold on;
-                if x_pos_i>=0 && y_pos_i>=0 
-                    plot(x_pos_i(1),y_pos_i(1),'p','Color',cmap(7,:),'LineWidth',3,'MarkerSize',30);  %# Plot each column with a
-                end
+                plot(x_pos_i(1),y_pos_i(1),'p','Color',cmap(7,:),'LineWidth',3,'MarkerSize',30);  %# Plot each column with a
             end
 
     %        h_leg=legend('Sensor','Target 1','Target 2','Target 3','Target 4','starting position');
@@ -267,19 +251,16 @@ for tt = 321:size(z,2)%%  test frame setting
             switch setup.pf_type
                 case 'ZPF'
                     path = [path, '/ZPF/'];
-                    title(['Estimated taregts and resampled or clipped particles at k = ',num2str(tt)],'FontSize',8);
-                case 'IPF'
-                    path = [path, '/IPF/'];
-                    title(['Estimated taregts and resampled or clipped particles at k = ',num2str(tt)],'FontSize',8);
+                    title(['Estimated taregts and resampled or clipped particles at k = ',num2str(tt)],'FontSize',16);
                 case 'NPF'
                     path = [path, '/NPF/'];
-                    title(['Estimated taregts and resampled or clipped particles at k = ',num2str(tt)],'FontSize',8);
+                    title(['Estimated taregts and resampled or clipped particles at k = ',num2str(tt)],'FontSize',16);
                 case 'NPFS'
                     path = [path, '/NPFS/'];
-                    title(['Particles of NPF-SMC-PHD_S filter before resampling and clipping at k = ',num2str(tt)],'FontSize',8);
+                    title(['Particles of NPF-SMC-PHD_S filter before resampling and clipping at k = ',num2str(tt)],'FontSize',16);
                 case 'SMC'
                     path = [path, '/SMC/'];
-                    title(['Estimated taregts and resampled or clipped particles at k = ',num2str(tt)],'FontSize',8);
+                    title(['Estimated taregts and resampled or clipped particles at k = ',num2str(tt)],'FontSize',16);
             end 
             path = [path, int2str(tt),'_c','.png'];
             print(gcf,'-painters','-dpng',path);

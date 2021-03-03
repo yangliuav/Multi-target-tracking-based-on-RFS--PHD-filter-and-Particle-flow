@@ -97,13 +97,15 @@ setup.Ac = ps;
 
 if setup.out.print_frame 
     cmap = hsv(7);  %# Creates a 6-by-3 set of colors from the HSV colormap
-    set(gcf);clf('reset')%hold on;
-    imshow(frm)
+    set(gcf);clf('reset');hold on;
+    imshow(frm);
+    drawnow;
 %     figure(20);clf;hold on;
      %set(gcf, 'Position', [100, 100, 1000, 900]);
 %         load 'sensorsXY';
-    fontsize = 24;
-    if isfield(setup.inp,'x_all')
+%     fontsize = 24;
+    ct = 0;
+    if isfield(setup.inp,'x_all') %% plot Ground Truth
         xx = cell2mat(setup.inp.x_all);% groundtruth 
         xxt  =xx(:,tt);
         for i = 1: setup.Ac.nspeaker
@@ -112,34 +114,29 @@ if setup.out.print_frame
             x_pos_i(x_pos_i==0) = NaN;
             y_pos_i(y_pos_i==0) = NaN;
             hold on;
-            plot(x_pos_i,y_pos_i,'-s','Color',cmap(i,:),'LineWidth',5,'MarkerSize',20);  %# Plot each column with a
+            if ~isnan(x_pos_i) && ~isnan(y_pos_i)
+                plot(x_pos_i,y_pos_i,'-s','Color',cmap(i,:),'LineWidth',5,'MarkerSize',20);  %# Plot each column with a
+                ct=ct+1;
+            end
         end
     end
-%     if isfield(setup.inp,'c_all')
-%         cc = cell2mat(setup.inp.c_all);
-%         cct  =cc(:,tt);
-%         for i = 1:size(cct,1)/4
-%             x_pos_i = cct((i-1)*4+1,:);
-%             y_pos_i = cct((i-1)*4+2,:);
-%             plot(x_pos_i(1),y_pos_i(1),'xk','Color',cmap(i+4,:),'LineWidth',3,'MarkerSize',30);  %# Plot each column with a
-%         end
-%     end
 
-    for i = 1: size(vgset,2)
-        x_pos_i = vgset(i).xp(1,:);
-        y_pos_i = vgset(i).xp(2,:);
+    for i = 1: size(vgset,2)% plot particles
+        if ct==0
+            break;
+        end
+        x_pos_i = vgset(i).xp(1,:)
+        y_pos_i = vgset(i).xp(2,:)
         hold on;
-        plot(x_pos_i(1),y_pos_i(1),'o','Color',[0,1,1],'LineWidth',3,'MarkerSize',3);  %# Plot each column with a %1-1*vgset(i).w/max(particle_weight)
+        if x_pos_i>=0 && y_pos_i>=0
+            plot(x_pos_i(1),y_pos_i(1),'o','Color',[0,1,1],'LineWidth',3,'MarkerSize',3);  %# Plot each column with a %1-1*vgset(i).w/max(particle_weight)
+        end
     end
-
-
-        h_leg=legend('Target 1','Target 2','Target 3','starting position');
-        set(h_leg,'FontSize',fontsize,'Location','southeast');
 
     grid on;
 %     axis(setup.Ac.likeparams.survRegion([1,3,2,4]))
 %     set(gca,'xtick',0:10:setup.Ac.initparams.survRegion(3),'ytick',0:10:setup.Ac.initparams.survRegion(4),'FontSize',fontsize);
-    set(gcf,'color','w');
+%     set(gcf,'color','w');
 %     xlabel('X (m)','FontSize',fontsize);
 %     ylabel('Y (m)','FontSize',fontsize);
 
@@ -148,16 +145,19 @@ if setup.out.print_frame
     switch setup.pf_type
         case 'ZPF'
             path = [path, '/ZPF/'];
-            title(['Particles of ZPF-SMC-PHD filter after predicting and birthing at k = ',num2str(tt)],'FontSize',16);
+            title(['Particles of ZPF-SMC-PHD filter after predicting and birthing at k = ',num2str(tt)],'FontSize',8);
          case 'NPFS'
             path = [path, '/NPFS/'];
-            title(['Particles of NPF-SMC-PHD_S filter after predicting and birthing at k = ',num2str(tt)],'FontSize',16);
+            title(['Particles of NPF-SMC-PHD_S filter after predicting and birthing at k = ',num2str(tt)],'FontSize',8);
         case 'NPF'
             path = [path, '/NPF/'];
-            title(['Particles of NPF-SMC-PHD filter after predicting and birthing at k = ',num2str(tt)],'FontSize',16);
+            title(['Particles of NPF-SMC-PHD filter after predicting and birthing at k = ',num2str(tt)],'FontSize',8);
         case 'SMC'
             path = [path, '/SMC/'];
-            title(['Particles of SMC-PHD filter filter after predicting and birthing at k = ',num2str(tt)],'FontSize',16);
+            title(['Particles of SMC-PHD filter filter after predicting and birthing at k = ',num2str(tt)],'FontSize',8);
+        case 'IPF'
+            path = [path, '/IPF/'];
+            title(['Particles of IPF-SMC-PHD filter filter after predicting and birthing at k = ',num2str(tt)],'FontSize',8);
     end 
     path = [path, int2str(tt),'_a','.png'];
     print(gcf,'-painters','-dpng',path);

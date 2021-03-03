@@ -59,7 +59,7 @@ setup.alg_path = fileparts(mfilename('fullpath'));
 %   Neff_thresh_ratio : the thresh of ESS
 %   nParticle : number of particles
 %}
-setup.algs = {'NPF-SMC_PHD'}; %, 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD','NPF-SMC_PHD_S' 
+setup.algs = {'NPF-SMC_PHD'}; %, 'ZPF-SMC_PHD','NPF-SMC_PHD' ,'SMC_PHD','NPF-SMC_PHD_S','IPF-SMC_PHD' 
 
 setup.ospa_c = 40;
 setup.ospa_p = 1;
@@ -252,4 +252,9 @@ setup.inp = inp;
 setup.out = out;
 setup.PHD = PHD;
 setup.PF  = PF; 
+
+clear inp;
+clear out;
+clear PHD;
+clear PF;
 %setup.inp

@@ -10,15 +10,15 @@ PD=0.008 % adjust as the setting
 for ii = 1:N
     h = vgset(ii).llh; 
     x = vgset(ii).xp(1:2,:);
-    d = repmat(x,1,size(h,2))-z
-	C = 0
+    d = repmat(x,1,size(h,2))-z;
+	C = 0;
 	for j = 1:znum
-		C = C + vgset(ii).llh(:,j)
+		C = C + vgset(ii).llh(:,j);
 	end 
 	C = C/sum(Cz);
     PD = vgset(ii).PD;
     Bpre(ii) = vgset(ii).B;
-	vgset(ii).B= 2 *(PD*C/(1-PD+PD*C))*sum(h)
-	slope_real(:,ii)  = sum(-(lambda*eye(dim/2)*(vgset(ii).B-Bpre(ii))-vgset(ii).PP(1:2,1:2)^-1)*vgset(ii).B*d.*h,2) % slope_real 是 f 吧？P
+	vgset(ii).B= 2 *(PD*C/(1-PD+PD*C))*sum(h);
+	slope_real(:,ii)  = sum(-(lambda*eye(dim/2)*(vgset(ii).B-Bpre(ii))-vgset(ii).PP(1:2,1:2)^-1)*vgset(ii).B*d.*h,2); % slope_real 是 f 吧？P
     
 end

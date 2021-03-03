@@ -43,6 +43,8 @@ function [vgset,setup] = posteriorPHD(vgset,setup,z_current,H,clutter,frm)
         switch setup.pf_type
             case 'ZPF'
                 vgset = particleFlowPHD(vgset,setup,z,Cz,frm);
+            case 'IPF'
+                vgset = particleFlowPHD(vgset,setup,z,Cz,frm);
             case {'NPF','NPFS'}
                 vgset = particleFlowPHD(vgset,setup,z,Cz,frm);
             case 'SMC'
