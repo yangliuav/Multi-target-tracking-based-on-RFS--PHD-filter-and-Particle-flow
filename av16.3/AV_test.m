@@ -19,7 +19,8 @@ load(data_name);
 Data.posGT.X_true([1 3 2 4 5],:,:) = Data.posGT.X_true([1 2 3 4 5],:,:);
 Data.posGT.X_true(5,:,:) = [];
 %Data.posGT.X_true = reshape(Data.posGT.X_true(:,:,:),[1 12 video.NumFrames]);
-Data.posGT.X_true = reshape(Data.posGT.X_true(:,:,:),[12 video.NumFrames]);
+Data.posGT.X_true = [Data.posGT.X_true(:,:,1);Data.posGT.X_true(:,:,2);Data.posGT.X_true(:,:,3)];
+% Data.posGT.X_true = reshape(Data.posGT.X_true(:,:,:),[12,video.NumFrames]); % error line
 
 % load the face detection result
 face_name = 'face_seq45_cam1.mat';
